@@ -54,8 +54,8 @@ def dashboard():
         session['first_name'] = one_user.first_name
         session['last_name'] = one_user.last_name
     # Add all_recipes to the dashboard
-    recipes_all = recipe.Recipe.get_all_recipes()
-    return render_template('dashboard.html', one_user=one_user, all_recipes=recipes_all)
+    all_recipes = recipe.Recipe.get_all_recipes()
+    return render_template('dashboard.html', one_user=one_user, all_recipes=all_recipes)
 
 @app.route('/login', methods=['POST'])
 def login():

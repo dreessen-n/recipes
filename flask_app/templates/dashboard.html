@@ -16,42 +16,37 @@
             <a class="btn btn-dash btn-warning" href="/logout" role="button">Logout</a>
         </div>
         <div class="main">
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Under</th>
-      <th scope="col">Posted By</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>name</td>
-      <td>Under</td>
-      <td>postedBy</td>
-      <td>
-          <a href="/recipe/{{ recipe_id  }}">view recipe</a>
-      </td>
-    </tr>
-    <tr>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>
-          <a href="/recipe/{{ recipe_id  }}">view recipe</a>
-      </td>
-    </tr>
-    <tr>
-      <td>Larry the Bird</td>
-      <td>@twitter</td>
-      <td>@twitter</td>
-      <td>
-          <a href="/recipe/{{ recipe_id  }}">view recipe</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Under</th>
+              <th scope="col">Posted By</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in all_recipes %}
+            <tr>
+                <td>{{ r.name }}</td>
+                {% if r.under_30 == 1 %}
+                  <td>Yes</td>
+                  {% else %}
+                  <td>No</td>
+                  {% endif %}
+                  <!-- NEED TO GET CREATORS NAME -->
+                  <td>{{ r.creator }}</td>
+              <td>
+                  <a href="/recipe/{{ r.id  }}">view recipe</a> | 
+                  {% if r.id == session.id %}
+                  <a href="/recipe/edit/{{r.id}}">edit</a> | 
+                  <a href="/recipe/delete/{{r.id}}">delete</a>
+                  {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
         </div>
     </div>
 

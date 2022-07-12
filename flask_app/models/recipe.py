@@ -10,12 +10,14 @@ class Recipe:
     def __init__(self,data):
         self.id = data['id']
         self.name = data['name']
-        self.description = data['decription']
-        self.insturctions = data['insturctions']
+        self.description = data['description']
+        self.instructions = data['instructions']
         self.under_30 = data['under_30']
         self.date_made = data['date_made']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        # Needed to create this to capture the creator of the recipe
+        self.creator = data['creator']
 
     # CRUD CREATE METHODS
     @classmethod
@@ -28,7 +30,7 @@ class Recipe:
     @classmethod
     def get_all_recipes(cls):
         """Get all the recipes in db"""
-        query = "SELECT * FROM recipes;"
+        query = "SELECT users.first_name AS creator, recipes.* FROM recipes LEFT JOIN users ON recipes.user_id = users.id;"
         results = connectToMySQL(cls.db).query_db(query)
         all_recipes = []
         for r in results:
@@ -55,4 +57,4 @@ class Recipe:
         query = "DELETE FROM recipes WHERE id = %(id)s;"
         return connectToMySQL(cle.db).query_db(query,data)
 
-    # FORM VALIDATION
+    # TODO FORM VALIDATION
