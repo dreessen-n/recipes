@@ -4,7 +4,7 @@ from flask_app import app
 from flask_app import Flask, render_template, request, redirect, session, url_for, flash, bcrypt
 
 # Import models class
-from flask_app.models import user
+from flask_app.models import user, recipe
 
 # Create the routes
 
@@ -53,7 +53,9 @@ def dashboard():
         session['email'] = one_user.email
         session['first_name'] = one_user.first_name
         session['last_name'] = one_user.last_name
-    return render_template('dashboard.html', one_user=one_user)
+    # Add all_recipes to the dashboard
+    recipes_all = recipe.Recipe.get_all_recipes()
+    return render_template('dashboard.html', one_user=one_user, all_recipes=recipes_all)
 
 @app.route('/login', methods=['POST'])
 def login():
