@@ -14,11 +14,16 @@ body {
 }
 
 .container {
-    width: 650px;
+    width: 400px;
     background-color: white;
-    padding: 20px;
+    padding: 10px;
     margin: 30px;
     border-radius: 15px;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
 }
 
 .input-group {

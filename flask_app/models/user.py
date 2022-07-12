@@ -19,7 +19,7 @@ password_pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,
 class User:
     # Use a alias for the database; call in classmethods as cls.db
     # For staticmethod need to call the database name not alias
-    db = "recipes_loginReg_1tbl"
+    db = "recipes_belt_prep"
 
     def __init__(self, data):
         """Model a user"""
@@ -84,7 +84,7 @@ class User:
             data = {
                 "email": user['email']
             }
-            email_result = connectToMySQL('recipes_loginReg_1tbl').query_db(query, data)
+            email_result = connectToMySQL('recipes_belt_prep').query_db(query, data)
             # Check to see if the query returned an result with that email;
             # if yes return False
             if len(email_result) >= 1:
