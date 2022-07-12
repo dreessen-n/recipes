@@ -16,6 +16,7 @@ class Recipe:
         self.date_made = data['date_made']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.user_id = data['user_id']
         # Needed to create this to capture the creator of the recipe
         self.creator = data['creator']
 
@@ -50,11 +51,11 @@ class Recipe:
         query = "UPDATE recipes SET (name=%(name)s, decription=%(decription)s, insturctions=%(insturctions)s, under_30=%(under_30)s, date_made=%(date_made)s, user_id=%(user_id)s;"
         return connectToMySQL(cls.db).query_db(query,data)
 
-    # CRUD DESTROY METHODS
+    # CRUD DELETE METHODS
     @classmethod
     def delete_recipe(cls,data):
         """Delete recipe"""
         query = "DELETE FROM recipes WHERE id = %(id)s;"
-        return connectToMySQL(cle.db).query_db(query,data)
+        return connectToMySQL(cls.db).query_db(query,data)
 
     # TODO FORM VALIDATION

@@ -38,7 +38,7 @@
                   <td>{{ r.creator }}</td>
               <td>
                   <a href="/recipe/{{ r.id  }}">view recipe</a> | 
-                  {% if r.id == session.id %}
+                  {% if r.user_id == session.id %}
                   <a href="/recipe/edit/{{r.id}}">edit</a> | 
                   <a href="/recipe/delete/{{r.id}}">delete</a>
                   {% endif %}
