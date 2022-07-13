@@ -12,14 +12,14 @@
     <div class="wrapper">
         <h1>Welcome {{ user.first_name }}</h1>
         <div class="nav">
-            <a href="/dashboard">back to recipes</a>
-            <a href="/logout">Logout</a>
+            <a class="btn btn-dash btn-warning" href="/dashboard">back to recipes</a>
+            <a class="btn btn-dash btn-warning" href="/logout">Logout</a>
         </div>
         <div class="main container">
             <div class="container">
                 <h2>{{ one_recipe.name }}</h2>
                 <h3> posted by {{ one_recipe.creator }}</h3>
-                <table class="show_one_recipe">
+                <table class="show_one_recipe table">
                     <tr>
                         <td>description:</td>
                         <td>{{ one_recipe.description }}</td>
