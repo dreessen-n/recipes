@@ -11,7 +11,7 @@
 <body>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-            <div class="container">
+            <div class="container-user">
                 <div class=flashes>
                 {% for category, message in messages %}
                     <div class="alert alert-{{ category }}" role="alert">
@@ -24,7 +24,7 @@
         {% endwith %}
     <h1>Recipe Share</h1>
     <div class="main">
-        <div class="container">
+        <div class="container-user">
             <h2>Register</h2>
             <form action="/register" method="POST">
               <div class="row mb-3">
@@ -42,7 +42,7 @@
               <div class="row mb-3">
                 <label for="input_Email" class="col-sm-4 col-form-label">Email</label>
                 <div class="col-sm-8">
-                  <input type="email" name="email" class="form-control" id="input_Email">
+                  <input type="email" placeholder="name@example.com" name="email" class="form-control" id="input_Email">
                 </div>
               </div>
               <div class="row mb-3">
@@ -60,13 +60,13 @@
               <button type="submit" class="btn btn-primary">Register</button>
             </form>
         </div>
-        <div class="container">
+        <div class="container-user">
             <h2>Login</h2>
             <form action="/login", method="POST">
               <div class="row mb-3">
                 <label for="inputEmail" class="col-sm-4 col-form-label">Email</label>
                 <div class="col-sm-8">
-                    <input type="email" name="email" class="form-control" id="inputEmail">
+                    <input type="email" placeholder="name@example.com" name="email" class="form-control" id="inputEmail">
                 </div>
               </div>
               <div class="row mb-3">

@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -12,46 +13,37 @@ body {
     align-items: center;
 }
 
-.container {
-    flex: 1;
+.container-user {
+    width: 400px;
     background-color: white;
     padding: 20px;
-    margin: 10px;
+    margin: 30px;
     border-radius: 15px;
 }
 
-.wrapper {
-    width: 900px;
-    margin: 10px;
+.dashboard {
+    width: 800px;
 }
 
-.nav {
-    margin: 4px;
+.dash-nav {
+    display: flex;
     justify-content: flex-end;
+}
+
+.btn-dash {
+    margin: 4px;
 }
 
 .main {
     display: flex;
-    width: 800px;
     flex-direction: row;
 }
 
-a {
-    margin: 5px;
+.input-group {
+    margin-bottom: 10px;
 }
 
-label {
-    margin: 5px;
-}
-
-input {
-    margin: 5px;
-}
-
-button {
-    padding: 4px;
-}
-
-td {
-    padding: 10px;
+.btn-home {
+    display: flex;
+    justify-content: flex-end;
 }
