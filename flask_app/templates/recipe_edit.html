@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <title></title>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+                <link rel="stylesheet" href="{{ url_for('static', filename='/css/starter_style.css') }}">
+        </head>
+        <body>
+            <!-- Error message section -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <div class="container">
+                    <div class=flashes>
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            {% endwith %}
+            <!-- End error message section -->
+            <div class="wrapper">
+                <h1>Welcome</h1>
+                <!-- Nav -->
+                <div class="nav">
+                    <a href="#">back</a>
+                    <a href="/logout">Logout</a>
+                </div>
+                <form action="/recipe/edit" method="POST">
+                <div class="main">
+                    <!-- Left container -->
+                    <div class="container left">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" >
+                        <label for="description">description</label>
+                        <input type="text" name="description" >
+                        <label for="instructions">instructions</label>
+                        <input type="text" name="instructions" >
+                    </div>
+                    <!-- Right container -->
+                    <div class="container right">
+                        <label for="date_made">Date Cooked/Made</label>
+                        <input type="date" name="date_made" >
+                        <label for="under_30">Under 30 minutes?</label>
+                        <input type="radio" name="under_30" value="0" checked>No</input>
+                        <input type="radio" name="under_30" value="1">Yes</input>
+                    </div>
+                </div>
+                    <button type="submit">submit</button>
+                </form>
+            </div>
+        
+        </body>
+</html>

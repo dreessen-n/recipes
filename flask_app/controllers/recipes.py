@@ -5,18 +5,15 @@ from flask_app import Flask, render_template, request, redirect, session, url_fo
 
 # Import models class
 from flask_app.models import user, recipe
-
-# Create the routes
-
 # CRUD CREATE ROUTES
-@app.route('/recipes/create', methods=['POST'])
+@app.route('/recipe/create', methods=['POST'])
 def create_new_recipe():
     # Check that user is logged in
     if 'id' not in session:
         flash("Please register or login to continue", "danger")
         return redirect('/')
     # Call staticmethod to validate form
-    if not recipe.Recipe.validate_recipe_form(request.form):
+    if not recipe.Recipe.validate_new_form(request.form):
         # Redirect back to new recipe page
         return redirect('/recipe/new')
     # Create data dict based on request form
@@ -24,8 +21,8 @@ def create_new_recipe():
     data = {
         'name': request.form['name'],
         'description': request.form['description'],
-        'insturctions': request.form['insturctions'],
-        'under_30': request.form['under_30'],
+        'instructions': request.form['instructions'],
+        'under_30': int(request.form['under_30']),
         'date_made': request.form['date_made'],
         'user_id': session['id']
     }
@@ -45,6 +42,22 @@ def recipe_new():
     data = { 'id': session['id'] }
     # Call classmethod in models
     return render_template('recipe_new.html', user=user.User.get_user_by_id(data))
+
+@app.route('/recipe/show/<int:recipe_id>')
+def recipe_show_one(recipe_id):
+    """Show the recipe on a page"""
+    # Check that user is logged in
+    if 'id' not in session:
+        flash("Please register or login to continue", "danger")
+        return redirect('/')
+    # Create data dict based on recipe_id
+    # The keys must match exactly to the var in the query set
+    data = { 'id': recipe_id }
+    # Create additonal data dict for user
+    data_user = { 'id': session['id'] }
+    # Call classmethods and render_template edit template with data filled in
+    return render_template('recipe_show.html', one_recipe=recipe.Recipe.get_one_recipe(data), user=user.User.get_user_by_id(data_user)) 
+
 
 # CRUD UPDATE ROUTES
 @app.route('/recipe/edit/<int:recipe_id>')
@@ -79,7 +92,7 @@ def update_recipe():
         'id': request.form['id'],
         'name': request.form['name'],
         'decription': request.form['decription'],
-        'insturctions': request.form['insturctions'],
+        'instructions': request.form['instructions'],
         'under_30': request.form['under_30'],
         'date_made': request.form['date_made']
     }

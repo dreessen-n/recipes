@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: navajowhite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.wrapper {
+    width: 900px;
+    margin: 10px;
+}
+
+.nav {
+    margin: 4px;
+    justify-content: flex-end;
+}
+
+.main {
+    display: flex;
+    width: 800px;
+    flex-direction: row;
+}
+
+a {
+    margin: 5px;
+}
+
+label {
+    margin: 5px;
+}
+
+input {
+    margin: 5px;
+}
+
+button {
+    padding: 4px;
+}
+
+td {
+    padding: 10px;
+}
