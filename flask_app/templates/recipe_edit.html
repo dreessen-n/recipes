@@ -45,7 +45,7 @@
                     <!-- Right container -->
                     <div class="container right">
                         <label for="date_made">Date Cooked/Made</label>
-                        <input type="date" name="date_made" value="{{ one_recipe.date_made }}">
+                        <input type="datetime-local" name="date_made" value="{{ one_recipe.date_made }}">
                         <label for="under_30">Under 30 minutes?</label>
                         {% if one_recipe.under_30 == 0 %}
                         <input type="radio" name="under_30" value="0" checked>No</input>
