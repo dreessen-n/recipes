@@ -48,7 +48,7 @@ class Recipe:
     @classmethod
     def update_recipe(cls,data):
         """Update the recipe"""
-        query = "UPDATE recipes SET (name=%(name)s, description=%(description)s, instructions=%(instructions)s, under_30=%(under_30)s, date_made=%(date_made)s, recipe_id=%(recipe_id)s;"
+        query = "UPDATE recipes SET name=%(name)s, description=%(description)s, instructions=%(instructions)s, under_30=%(under_30)s, date_made=%(date_made)s WHERE recipes.id=%(id)s;"
         return connectToMySQL(cls.db).query_db(query,data)
 
     # CRUD DELETE METHODS
@@ -60,7 +60,7 @@ class Recipe:
 
     # FORM VALIDATION
     @staticmethod
-    def validate_new_form(recipe):
+    def validate_form(recipe):
         """Validate the new recipe create form"""
         is_valid = True # We set True until False
         if len(recipe['name']) < 2:
@@ -76,6 +76,5 @@ class Recipe:
             flash("Please enter a date.", "danger")
             is_valid = False
         return is_valid
-               
 
 

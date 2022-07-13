@@ -24,30 +24,36 @@
             {% endwith %}
             <!-- End error message section -->
             <div class="wrapper">
-                <h1>Welcome</h1>
+                <h1>Edit Recipe!</h1>
                 <!-- Nav -->
                 <div class="nav">
-                    <a href="#">back</a>
+                    <a href="/dashboard">back to recipes</a>
                     <a href="/logout">Logout</a>
                 </div>
-                <form action="/recipe/edit" method="POST">
+                <form action="/recipe/update" method="POST">
+                    <input type="hidden" name="id" value="{{ one_recipe.id }}">
                 <div class="main">
                     <!-- Left container -->
                     <div class="container left">
                         <label for="name">Name</label>
-                        <input type="text" name="name" >
+                        <input type="text" name="name" value="{{ one_recipe.name }}" >
                         <label for="description">description</label>
-                        <input type="text" name="description" >
+                        <input type="text" name="description" value="{{ one_recipe.description }}" >
                         <label for="instructions">instructions</label>
-                        <input type="text" name="instructions" >
+                        <input type="text" name="instructions" value="{{ one_recipe.instructions }}" >
                     </div>
                     <!-- Right container -->
                     <div class="container right">
                         <label for="date_made">Date Cooked/Made</label>
-                        <input type="date" name="date_made" >
+                        <input type="date" name="date_made" value="{{ one_recipe.date_made }}">
                         <label for="under_30">Under 30 minutes?</label>
+                        {% if one_recipe.under_30 == 0 %}
                         <input type="radio" name="under_30" value="0" checked>No</input>
                         <input type="radio" name="under_30" value="1">Yes</input>
+                        {% else %}
+                        <input type="radio" name="under_30" value="0">No</input>
+                        <input type="radio" name="under_30" value="1" checked>Yes</input>
+                        {% endif %}
                     </div>
                 </div>
                     <button type="submit">submit</button>

@@ -13,7 +13,7 @@ def create_new_recipe():
         flash("Please register or login to continue", "danger")
         return redirect('/')
     # Call staticmethod to validate form
-    if not recipe.Recipe.validate_new_form(request.form):
+    if not recipe.Recipe.validate_form(request.form):
         # Redirect back to new recipe page
         return redirect('/recipe/new')
     # Create data dict based on request form
@@ -83,17 +83,18 @@ def update_recipe():
         flash("Please register or login to continue", "danger")
         return redirect('/')
     # Call staticmethod to validate form
-    if not recipe.Recipe.validate_recipe_form(request.form):
+    if not recipe.Recipe.validate_form(request.form):
         # Redirect back to new recipe page
-        return redirect('/recipe/new')
+        id = int(request.form['id'])
+        return redirect(f'/recipe/edit/{id}')
     # Create data dict based on recipe_id
     # The keys must match exactly to the var in the query set
     data = {
-        'id': request.form['id'],
+        'id': int(request.form['id']),
         'name': request.form['name'],
-        'decription': request.form['decription'],
+        'description': request.form['description'],
         'instructions': request.form['instructions'],
-        'under_30': request.form['under_30'],
+        'under_30': int(request.form['under_30']),
         'date_made': request.form['date_made']
     }
     # Call classmethod in models
