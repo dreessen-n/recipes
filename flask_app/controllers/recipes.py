@@ -5,6 +5,7 @@ from flask_app import Flask, render_template, request, redirect, session, url_fo
 
 # Import models class
 from flask_app.models import user, recipe
+
 # CRUD CREATE ROUTES
 @app.route('/recipe/create', methods=['POST'])
 def create_new_recipe():
